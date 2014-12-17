@@ -8,9 +8,9 @@ Here is the composer.json file of a distant Composer package we want to use in o
 
     {
         "require": {
-            "rvip/composer-assets-installer": "~1.0"
+            "reputation-vip/composer-assets-installer": "~1.0"
         },
-        "name": "rvip/required-distant-package",
+        "name": "reputation-vip/required-distant-package",
         "extra": {
             "assets-dir" : "public"
         }
@@ -21,7 +21,7 @@ Here is the composer.json file of our project :
 
     {
         "require": {
-            "rvip/composer-assets-installer": "~1.0",
+            "reputation-vip/composer-assets-installer": "~1.0",
             "my/required-distant-package": "~1.0"
         },
         "extra": {
@@ -44,7 +44,7 @@ That's why we needed a **tested, documented and easily configurable** Composer p
 You simply have to add the following line to the requirements of your composer.json file:
 
     "require": {
-        "rvip/composer-assets-installer": "~1.0"
+        "reputation-vip/composer-assets-installer": "~1.0"
     }
     
 Then, you can specify the target for your asset directory (web for example):
