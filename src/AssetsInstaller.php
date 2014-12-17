@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Rvip\Composer;
+namespace ReputationVIP\Composer;
 
 use Composer\Composer;
 use Composer\Config;

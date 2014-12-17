@@ -3,7 +3,7 @@
  * AssetsInstallerPlugin.php
  */
 
-namespace Rvip\Composer;
+namespace ReputationVIP\Composer;
 
 use Composer\Composer;
 use Composer\Plugin\PluginInterface;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Rvip\Composer\AssetsInstaller;
+use ReputationVIP\Composer\AssetsInstaller;
 use Composer\Composer;
 use Composer\Config;
 use Composer\IO\NullIO;
