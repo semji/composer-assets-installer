@@ -1,9 +1,15 @@
 <?php
+
 /*
- * AssetsInstallerPlugin.php
+ * This file is part of the Composer Assets Installer package.
+ *
+ * (c) Alban Pommeret <ap@reputationvip.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-use Neverdane\Composer\AssetsInstaller;
+use Rvip\Composer\AssetsInstaller;
 use Composer\Composer;
 use Composer\Config;
 use Composer\IO\NullIO;

@@ -1,6 +1,6 @@
-## Synopsis
+## Composer Assets Installer
 
-composer-assets-installer provides a **fast and easy** way to copy the assets of your Composer packages into your public folder. You only have to chose the target assets directory(ies) in your composer.json.
+Composer Assets Installer provides a **fast and easy** way to **copy the assets of your Composer packages into your public folder**. You only have to chose one or multiple asset directories of the target in your "composer.json" file.
 
 ## Code Example
 
@@ -17,7 +17,7 @@ Here is the composer.json file of a distant Composer package we want to use in o
     }
 
 
-Here is our project composer.json file :
+Here is the composer.json file of our project :
 
     {
         "require": {
@@ -29,21 +29,25 @@ Here is our project composer.json file :
         }
     }
     
-The assets will then be accessible through the following path : **web/my/required-distant-package**.
+Then, the assets will be accessible through the following path: **web/my/required-distant-package**.
 
 ## Motivation
 
-We often create full Composer packages, embedding a javascript logic and a css layer. We were somehow frustrated by the Composer lack of assets handling, forcing us to manually copy the assets into our public directory. Indeed, as soon as our package updates, we had to repeat this task. We wanted a tested, documented and easily configurable Composer plugin which allows to keep control on the assets directories.
+As members of the **Reputation VIP**'s development team, we are used to creating full Composer packages, embedding a javascript logic and a css layer.
+
+When we first started using Composer, we were somehow frustrated by it's lack of asset handling. Indeed, Composer forced us to manually copy the assets into our public directory. Furthermore, every time we updated the package, we had to repeat this task.
+
+That's why we needed a **tested, documented and easily configurable** Composer plugin which allowed us to **keep control on the asset directories**.
 
 ## Installation
 
-You just have to ad the following line to your composer.json requirements :
+You simply have to add the following line to the requirements of your composer.json file:
 
     "require": {
         "rvip/composer-assets-installer": "~1.0"
     }
     
-Then, you can specify the target for your assets directory (web for example) :
+Then, you can specify the target for your asset directory (web for example):
 
     "extra": {
         "assets-dir": "web"
@@ -52,10 +56,10 @@ Then, you can specify the target for your assets directory (web for example) :
 
 ## API Reference
 
-You can specify a unique target or as many as you want :
+With this solution, you can specify as many targets as you want:
 
     "extra": {
-        "assets-dir" : {
+        "assets-dir": {
             "js": "web/js",
             "css": "web/css"
          }

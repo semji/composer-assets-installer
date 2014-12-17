@@ -1,6 +1,13 @@
 <?php
+
+
 /*
- * AssetsInstallerPlugin.php
+ * This file is part of the Composer Assets Installer package.
+ *
+ * (c) Alban Pommeret <ap@reputationvip.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Rvip\Composer;
@@ -65,6 +72,7 @@ class AssetsInstaller
      * the other packages assets will be installed
      * @param Composer $composer
      * @param IOInterface $io
+     * @param null $directoryHandler
      */
     public function __construct($composer, $io, $directoryHandler = null)
     {
