@@ -15,10 +15,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Rvip\\Composer\\": "src"
+            "ReputationVIP\\Composer\\": "src"
         }
     },
     "extra": {
-        "class": "Rvip\\Composer\\AssetsInstallerPlugin"
+        "class": "ReputationVIP\\Composer\\AssetsInstallerPlugin"
     }
 }

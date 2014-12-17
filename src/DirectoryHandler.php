@@ -3,7 +3,7 @@
  * AssetsInstallerPlugin.php
  */
 
-namespace Rvip\Composer;
+namespace ReputationVIP\Composer;
 
 class DirectoryHandler
 {
