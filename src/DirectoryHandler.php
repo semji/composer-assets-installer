@@ -9,9 +9,9 @@ class DirectoryHandler
 {
 
     /**
-     * @param $src
-     * @param $dst
-     * @return self
+     * @param string $src
+     * @param string $dst
+     * @return $this
      */
     public function copyDirectory($src, $dst)
     {
@@ -34,6 +34,10 @@ class DirectoryHandler
         closedir($dir);
     }
 
+    /**
+     * @param string $dirPath
+     * @return $this
+     */
     public function deleteDirectory($dirPath)
     {
         if (!is_dir($dirPath)) {
@@ -51,8 +55,13 @@ class DirectoryHandler
             }
         }
         rmdir($dirPath);
+        return $this;
     }
 
+    /**
+     * @param string $path
+     * @return bool
+     */
     public function isDirectory($path)
     {
         return is_dir($path);
