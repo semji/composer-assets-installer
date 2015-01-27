@@ -1,4 +1,4 @@
-## Composer Assets Installer
+# Composer Assets Installer [![Build Status](https://travis-ci.org/ReputationVIP/composer-assets-installer.svg?branch=master)](https://travis-ci.org/ReputationVIP/composer-assets-installer)
 
 Composer Assets Installer provides a **fast and easy** way to **copy the assets of your Composer packages into your public folder**. You only have to chose one or multiple asset directories of the target in your "composer.json" file.
 
