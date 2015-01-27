@@ -174,7 +174,10 @@ class AssetsInstaller
             $jsonFile = new JsonFile($jsonPath);
             // @codeCoverageIgnoreEnd
         }
-        return $jsonFile->read();
+        if(file_exists($jsonPath)) {
+            return $jsonFile->read();
+        }
+        return null;
     }
 
     /**
