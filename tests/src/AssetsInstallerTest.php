@@ -10,11 +10,8 @@
  */
 
 use ReputationVIP\Composer\AssetsInstaller;
-use Composer\Composer;
 use Composer\Config;
 use Composer\IO\NullIO;
-use Composer\Json\JsonFile;
-use Composer\IO\IOInterface;
 use Composer\Package;
 
 class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
@@ -219,7 +216,15 @@ class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
         $composer = $this->getComposer($package, $packageNs);
         $directoryHandler = $this->getDirectoryHandler($directoryHandlerNs);
         $io = $this->getIO();
-        return new AssetsInstaller($composer, $io, $directoryHandler);
+
+        $fsStub = $this
+            ->getMockBuilder('Symfony\Component\Filesystem\Filesystem')
+            ->getMock();
+        $fsStub
+            ->method('exists')
+            ->willReturn(true);
+
+        return new AssetsInstaller($composer, $io, $directoryHandler, $fsStub);
     }
 
     private function getMockPackage($packageNs = self::NS_DEFAULT, $linksNs = self::NS_DEFAULT)
