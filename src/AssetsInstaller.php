@@ -17,6 +17,7 @@ use Composer\Config;
 use Composer\Json\JsonFile;
 use Composer\IO\IOInterface;
 use Composer\Package;
+use Symfony\Component\Filesystem\Filesystem;
 
 class AssetsInstaller
 {
@@ -70,15 +71,19 @@ class AssetsInstaller
      * retrieves the assets-dir set if any.
      * This assets-dir is the path where
      * the other packages assets will be installed
+     *
+     * @param Filesystem $fs
      * @param Composer $composer
      * @param IOInterface $io
      * @param null $directoryHandler
      */
-    public function __construct($composer, $io, $directoryHandler = null)
+    public function __construct($composer, $io, $directoryHandler = null, Filesystem $fs = null)
     {
         $this->composer = $composer;
         $this->io = $io;
         $this->directoryHandler = (!is_null($directoryHandler)) ? $directoryHandler : new DirectoryHandler();
+        $this->fs = $fs ?: new Filesystem();
+
         // We get the current package instance
         $this->package = $composer->getPackage();
         // We read its extra section of composer.json
@@ -174,10 +179,8 @@ class AssetsInstaller
             $jsonFile = new JsonFile($jsonPath);
             // @codeCoverageIgnoreEnd
         }
-        if(file_exists($jsonPath)) {
-            return $jsonFile->read();
-        }
-        return null;
+
+        return $this->fs->exists($jsonPath) ? $jsonFile->read() : null;
     }
 
     /**
