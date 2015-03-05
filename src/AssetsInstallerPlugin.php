@@ -36,12 +36,15 @@ class AssetsInstallerPlugin implements PluginInterface, EventSubscriberInterface
     {
         return array(
             ScriptEvents::POST_UPDATE_CMD => array(
-                array('onPostUpdate', 0)
+                array('onPostInstall', 0)
+            ),
+            ScriptEvents::POST_INSTALL_CMD => array(
+                array('onPostInstall', 0)
             )
         );
     }
 
-    public function onPostUpdate(Event $event)
+    public function onPostInstall(Event $event)
     {
         $this->assetsInstaller->install();
     }
