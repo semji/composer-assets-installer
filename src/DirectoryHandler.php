@@ -41,23 +41,28 @@ class DirectoryHandler
      * @return $this
      */
     public function deleteDirectory($dirPath)
-    {
-        if (!is_dir($dirPath)) {
-            return false;
-        }
-        if (substr($dirPath, strlen($dirPath) - 1, 1) != DIRECTORY_SEPARATOR) {
-            $dirPath .= DIRECTORY_SEPARATOR;
-        }
-        $files = glob($dirPath . '*', GLOB_MARK);
-        foreach ($files as $file) {
-            if (is_dir($file)) {
-                $this->deleteDirectory($file);
-            } else {
-                unlink($file);
-            }
-        }
-        rmdir($dirPath);
-        return $this;
+    {       
+        if (!is_dir($dirPath)) 
+        {            
+            return false;        
+        } 
+        
+        if (is_dir($dirPath))         
+        {             
+            $files = scandir($dirPath);             
+            foreach ($files as $file) 
+            {             
+                if ($file != "." && $file != "..")             
+                {              
+                    if (is_dir($dirPath."/".$file))               
+                    $this->deleteDirectory($dirPath."/".$file);             
+                }else{               
+                    unlink($dirPath."/".$file);             
+                }         
+            }        
+            rmdir($dirPath);         
+            return $this;        
+        }     
     }
 
     /**
