@@ -32,6 +32,8 @@ class DirectoryHandler
             }
         }
         closedir($dir);
+
+        return $this;
     }
 
     /**

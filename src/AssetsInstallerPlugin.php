@@ -11,11 +11,10 @@ use Composer\IO\IOInterface;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
-use Symfony\Component\Filesystem\Filesystem;
 
 class AssetsInstallerPlugin implements PluginInterface, EventSubscriberInterface
 {
-
+    /** @var AssetsInstaller */
     private $assetsInstaller;
 
     /**
