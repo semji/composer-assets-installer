@@ -1,5 +1,6 @@
 {
     "name": "reputation-vip/composer-assets-installer",
+    "license": "MIT",
     "type": "composer-plugin",
     "authors": [
         {
@@ -9,7 +10,7 @@
     ],
     "require": {
         "composer-plugin-api": "~1.0",
-        "symfony/filesystem": "^2.0"
+        "symfony/filesystem": "^3.0"
     },
     "require-dev": {
         "composer/composer": "1.0.x-dev",

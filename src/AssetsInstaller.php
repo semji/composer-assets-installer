@@ -13,7 +13,6 @@
 namespace ReputationVIP\Composer;
 
 use Composer\Composer;
-use Composer\Config;
 use Composer\Json\JsonFile;
 use Composer\IO\IOInterface;
 use Composer\Package;
@@ -126,6 +125,7 @@ class AssetsInstaller
     {
         // We get all the packages required
         $packages = $this->composer->getPackage()->getRequires();
+        /** @var Package\Link $package */
         foreach ($packages as $package) {
             $this->packagesStatuses[$package->getTarget()] = array('extra' => null, 'dirs' => null);
             $this->installPackage($package);
