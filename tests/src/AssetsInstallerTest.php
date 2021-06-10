@@ -235,7 +235,12 @@ class AssetsInstallerTest extends TestCase
     {
         $mockPackageData = $this->mockPackage[$packageNs];
 
-        $package = $this->createPartialMock(Package::class, array('getExtra', 'getName', 'getRequires', 'getTarget'));
+        $jsonFileReader = $this->createPartialMock(JsonFile::class, array('read'));
+        $jsonFileReader->expects($this->any())
+            ->method('read')
+            ->will($this->returnValue($mockPackageData['jsonFile']));
+
+        $package = $this->createPartialMock(Package::class, array('getExtra', 'getName', 'getRequires', 'getTarget', 'getJsonFile'));
         $package->expects($this->any())
             ->method('getExtra')
             ->will($this->returnValue($mockPackageData['extra']));
@@ -248,6 +253,9 @@ class AssetsInstallerTest extends TestCase
         $package->expects($this->any())
             ->method('getRequires')
             ->will($this->returnValue($this->getMockPackagesLinks($linksNs)));
+        $package->expects($this->any())
+            ->method('getJsonFile')
+            ->will($this->returnValue($jsonFileReader));
         return $package;
     }
 
@@ -297,10 +305,18 @@ class AssetsInstallerTest extends TestCase
 
     private function getMockPackageLink($mockLinkData)
     {
-        $link = $this->createPartialMock(Link::class, array('getTarget'));
+        $jsonFileReader = $this->createPartialMock(JsonFile::class, array('read'));
+        $jsonFileReader->expects($this->any())
+            ->method('read')
+            ->will($this->returnValue($mockLinkData['jsonFile']));
+
+        $link = $this->createPartialMock(Link::class, array('getTarget', 'getJsonFile'));
         $link->expects($this->any())
             ->method('getTarget')
             ->will($this->returnValue($mockLinkData['target']));
+        $link->expects($this->any())
+            ->method('getJsonFile')
+            ->will($this->returnValue($jsonFileReader));
 
         return $link;
     }
