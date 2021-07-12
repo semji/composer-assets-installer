@@ -9,12 +9,12 @@
         }
     ],
     "require": {
-        "composer-plugin-api": "~1.0",
-        "symfony/filesystem": "^3.0"
+        "composer-plugin-api": "^1.0 || ^2.0",
+        "symfony/filesystem": "^3.0 || ^4.0 || ^5.0"
     },
     "require-dev": {
-        "composer/composer": "^1.4",
-        "phpunit/phpunit": "~4.4"
+        "composer/composer": "^1.10 || ^2.0",
+        "phpunit/phpunit": "^8.5.12 || ^9.3"
     },
     "autoload": {
         "psr-4": {

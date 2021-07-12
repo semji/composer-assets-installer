@@ -9,12 +9,18 @@
  * file that was distributed with this source code.
  */
 
-use ReputationVIP\Composer\AssetsInstaller;
-use Composer\Config;
+use Composer\Composer;
 use Composer\IO\NullIO;
-use Composer\Package;
+use Composer\Package\Link;
+use Composer\Json\JsonFile;
+use Composer\Package\Package;
+use PHPUnit\Framework\TestCase;
+use Composer\Installer\InstallationManager;
+use ReputationVIP\Composer\AssetsInstaller;
+use ReputationVIP\Composer\DirectoryHandler;
+use Symfony\Component\Filesystem\Filesystem;
 
-class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
+class AssetsInstallerTest extends TestCase
 {
     const NS_DEFAULT = 'default';
 
@@ -217,9 +223,7 @@ class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
         $directoryHandler = $this->getDirectoryHandler($directoryHandlerNs);
         $io = $this->getIO();
 
-        $fsStub = $this
-            ->getMockBuilder('Symfony\Component\Filesystem\Filesystem')
-            ->getMock();
+        $fsStub = $this->createMock(Filesystem::class);
         $fsStub
             ->method('exists')
             ->willReturn(true);
@@ -231,12 +235,12 @@ class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
     {
         $mockPackageData = $this->mockPackage[$packageNs];
 
-        $jsonFileReader = $this->getMock('JsonFile', array('read'));
+        $jsonFileReader = $this->createPartialMock(JsonFile::class, array('read'));
         $jsonFileReader->expects($this->any())
             ->method('read')
             ->will($this->returnValue($mockPackageData['jsonFile']));
 
-        $package = $this->getMock('Package', array('getExtra', 'getName', 'getRequires', 'getTarget'));
+        $package = $this->createPartialMock(Package::class, array('getExtra', 'getName', 'getRequires', 'getTarget', 'getJsonFile'));
         $package->expects($this->any())
             ->method('getExtra')
             ->will($this->returnValue($mockPackageData['extra']));
@@ -258,13 +262,13 @@ class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
     private function getComposer($package, $packageNs = self::NS_DEFAULT)
     {
         $mockPackageData = $this->mockPackage[$packageNs];
-        $installationManager = $this->getMock('InstallationManager', array('getInstallPath'));
+        $installationManager = $this->createPartialMock(InstallationManager::class, array('getInstallPath'));
         $installationManager->expects($this->any())
             ->method('getInstallPath')
             //->with($package)
             ->will($this->returnValue($mockPackageData['installPath']));
 
-        $composer = $this->getMock('Composer', array('getPackage', 'getInstallationManager'));
+        $composer = $this->createPartialMock(Composer::class, array('getPackage', 'getInstallationManager'));
         $composer->expects($this->any())
             ->method('getPackage')
             ->will($this->returnValue($package));
@@ -277,7 +281,7 @@ class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
     private function getDirectoryHandler($directoryHandlerNs = self::NS_DEFAULT)
     {
         $directoryHandlerData = $this->mockDirectoryHandler[$directoryHandlerNs];
-        $directoryHandler = $this->getMock('DirectoryHandler', array('isDirectory', 'copyDirectory', 'deleteDirectory'));
+        $directoryHandler = $this->createPartialMock(DirectoryHandler::class, array('isDirectory', 'copyDirectory', 'deleteDirectory'));
         $directoryHandler->expects($this->any())
             ->method('isDirectory')
             ->will($this->returnValue($directoryHandlerData['isDirectory']));
@@ -301,12 +305,12 @@ class AssetsInstallerTest extends \PHPUnit_Framework_TestCase
 
     private function getMockPackageLink($mockLinkData)
     {
-        $jsonFileReader = $this->getMock('JsonFile', array('read'));
+        $jsonFileReader = $this->createPartialMock(JsonFile::class, array('read'));
         $jsonFileReader->expects($this->any())
             ->method('read')
             ->will($this->returnValue($mockLinkData['jsonFile']));
 
-        $link = $this->getMock('Link', array('getTarget', 'getJsonFile'));
+        $link = $this->createPartialMock(Link::class, array('getTarget', 'getJsonFile'));
         $link->expects($this->any())
             ->method('getTarget')
             ->will($this->returnValue($mockLinkData['target']));

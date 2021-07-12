@@ -47,4 +47,14 @@ class AssetsInstallerPlugin implements PluginInterface, EventSubscriberInterface
     {
         $this->assetsInstaller->install();
     }
+
+    /** {@inheritDoc} */
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+    }
+
+    /** {@inheritDoc} */
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
+    }
 }
